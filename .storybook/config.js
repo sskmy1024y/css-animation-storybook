@@ -4,7 +4,7 @@ addParameters({
   // https://github.com/storybooks/storybook/blob/next/docs/src/pages/configurations/options-parameter/index.md#global-options
   options: {
     theme: {
-      brandTitle: 'react-template'
+      brandTitle: 'CSS Animation'
     },
     sortStoriesByKind: true
   }
