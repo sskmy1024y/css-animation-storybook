@@ -45,10 +45,10 @@ const CancelButtonContainer = styled(BaseButton)<ButtonBaseProps>`
       : ``}
   /* animation */
   .line:first-child::before {
-    animation: ${slideRight} 0.2s ease 1.1s forwards;
+    animation: ${slideRight} 0.2s ease 0.4s forwards;
   }
   .line:last-child::before {
-    animation: ${slideRight} 0.2s ease 1.3s forwards;
+    animation: ${slideRight} 0.2s ease 0.7s forwards;
   }
 `
 

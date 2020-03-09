@@ -57,10 +57,10 @@ const OkButtonContainer = styled(BaseButton)<Props>`
       : ``}
   /* animation */
   .line:first-child::before {
-    animation: ${slideRight} 0.2s ease 0.8s forwards;
+    animation: ${slideRight} 0.2s ease 0.4s forwards;
   }
   .line:last-child::before {
-    animation: ${slideTop} 0.2s ease 1s forwards;
+    animation: ${slideTop} 0.2s ease 0.5s forwards;
   }
 `
 

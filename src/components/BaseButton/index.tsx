@@ -19,7 +19,6 @@ const BaseButton = styled.button<ButtonBaseProps>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   border-radius: 50%;
-  /* transform: translateY(-50%); */
   cursor: pointer;
   transition: all 0.4s ease-out 0s;
   .line {
