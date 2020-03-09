@@ -1,0 +1,138 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "standard-jsx",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/standard",
+    "prettier/@typescript-eslint"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module",
+    "project": "tsconfig.json",
+    "tsconfigRootDir": ".",
+    "createDefaultProgram": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "sort-imports-es6-autofix"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "import/export": "off",
+        "no-dupe-class-members": "off",
+        "no-redeclare": "off",
+        "no-undef": "off",
+        "no-shadow": "off",
+        "react/prop-types": "off",
+        "@typescript-eslint/no-unused-vars": [
+          // NOTE: disabled until the varsIgnorePattern bug is fixed, or a vars: 'none' option is added.
+          "off",
+          {
+            // NOTE: due to a bug in eslint, varsIgnorePattern is _also_ applied to caughtErrors,
+            // instead of only caughtErrorsIgnorePattern. Commented out for now.
+            // varsIgnorePattern: '^',
+            "ignoreRestSiblings": true,
+            // do not check function arguments (checked by --noUnusedParameters)
+            "args": "none",
+            "caughtErrors": "all"
+          }
+        ],
+        "@typescript-eslint/prefer-as-const": "error"
+      }
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        // rule is not aware of sourceType, and can't use "import X = require('x')" syntax in javascript
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": [
+        "*.config.js"
+      ],
+      "parserOptions": {
+        "sourceType": "script"
+      },
+      "env": {
+        "node": true,
+        "browser": false
+      }
+    }
+  ],
+  "rules": {
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "line": {
+          // license comment, typescript directives, vscode folding
+          "markers": [
+            "!",
+            "/ <reference",
+            "#region",
+            "#endregion"
+          ]
+        }
+      }
+    ],
+    "no-unused-vars": "off",
+    "prettier/prettier": "error",
+    "interfaceName": "off",
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      "warn",
+      {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ]
+      }
+    ],
+    "react/jsx-boolean-value": [
+      "error",
+      "never"
+    ]
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "processors": [
+    [
+      "stylelint-processor-styled-components",
+      {
+        "parserPlugins": [
+          "jsx",
+          "asyncGenerators",
+          "bigInt",
+          "classProperties",
+          "classPrivateProperties",
+          "classPrivateMethods",
+          "dynamicImport",
+          "exportNamespaceFrom",
+          "importMeta",
+          "nullishCoalescingOperator",
+          "numericSeparator",
+          "objectRestSpread",
+          "optionalCatchBinding",
+          "optionalChaining",
+          "topLevelAwait"
+        ]
+      }
+    ]
+  ],
+  "extends": [
+    "./.stylelintrc.json"
+  ],
+  "rules": {
+    "no-empty-source": null,
+    "block-no-empty": null,
+    "comment-empty-line-before": null,
+    "declaration-empty-line-before": null,
+    "declaration-block-semicolon-newline-after": null,
+    "rule-empty-line-before": null,
+    "no-duplicate-selectors": null,
+    "block-closing-brace-empty-line-before": null,
+    "selector-type-case": null,
+    "selector-type-no-unknown": null,
+    "value-list-max-empty-lines": null,
+    "block-opening-brace-space-after": null,
+    "block-closing-brace-space-before": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "local"
+        ]
+      }
+    ],
+    "selector-descendant-combinator-no-non-space": null,
+    "selector-max-empty-lines": null,
+    "declaration-colon-newline-after": null
+  }
+}
