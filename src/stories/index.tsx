@@ -19,8 +19,9 @@ storiesOf('Button', module)
     </Button>
   ))
 
-export const Container = styled.div<{ width?: number | string }>`
+export const Container = styled.div<{ width?: number | string; height?: number | string }>`
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
+  height: ${({ height }) => (typeof height === 'number' ? `${height}px` : height)};
   margin: 10px 10px 20px;
   padding: 15px;
   border: 1px solid #ddd;
@@ -28,5 +29,6 @@ export const Container = styled.div<{ width?: number | string }>`
 `
 
 Container.defaultProps = {
-  width: 698
+  width: 698,
+  height: 'auto'
 }
