@@ -7,7 +7,7 @@ import { Container } from 'stories'
 
 import OkButton from './OKButton'
 import CancelButton from './CancelButton'
-import styled from 'styled-components'
+import PlayButton from './PlayButton'
 
 const stories = storiesOf('Components|AnimButton', module)
 stories.addDecorator(story => <Provider story={story} />)
@@ -30,6 +30,17 @@ stories.addDecorator(withKnobs).add('CancelButton', () => {
   return (
     <Container>
       <CancelButton size={size} color={color} />
+    </Container>
+  )
+})
+
+stories.addDecorator(withKnobs).add('PlayButton', () => {
+  const size = number('size', 50)
+  const color = text('color', '#ea8b98')
+
+  return (
+    <Container>
+      <PlayButton size={size} color={color} />
     </Container>
   )
 })

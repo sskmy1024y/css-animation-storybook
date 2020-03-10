@@ -2,7 +2,7 @@ import React from 'react'
 
 import BaseButton, { ButtonBaseProps } from '../BaseButton'
 import styled, { css } from 'styled-components'
-import { slideRight, slideTop, popupButton, hiddenOkButton } from 'libs/keyframe'
+import { slideRight, slideTop } from 'libs/keyframe'
 
 const LINE_WIDTH = 4
 

@@ -3,7 +3,7 @@ import React from 'react'
 import BaseButton, { ButtonBaseProps } from 'components/BaseButton'
 
 import styled, { css } from 'styled-components'
-import { slideRight, popupButton, slideCancelButton } from 'libs/keyframe'
+import { slideRight } from 'libs/keyframe'
 
 const LINE_WIDTH = 4
 
