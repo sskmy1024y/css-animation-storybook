@@ -1,6 +1,6 @@
 import React from 'react'
 
-import BaseButton, { ButtonBaseProps } from '../BaseButton'
+import BaseButton, { ButtonBaseProps } from './BaseButton'
 import styled, { css } from 'styled-components'
 import { slideRight, slideTop } from 'libs/keyframe'
 

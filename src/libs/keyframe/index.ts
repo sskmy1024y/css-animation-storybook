@@ -1,6 +1,7 @@
 import { keyframes } from 'styled-components'
 
 export * from './slide'
+export * from './fade'
 
 export const popupModal = keyframes`
   0%   { transform: translateY(50%); opacity: 0; }
