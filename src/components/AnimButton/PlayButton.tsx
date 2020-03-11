@@ -29,9 +29,10 @@ const PlayButtonContainer = styled(BaseButton)<Props>`
       }
 
       &.line1 {
+        top: 2.5%;
         left: 0;
         width: ${LINE_WIDTH}px;
-        height: 100%;
+        height: 95%;
       }
 
       &.line2 {
