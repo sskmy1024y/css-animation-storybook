@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import SlideNumber from './SlideNumber'
 
@@ -6,26 +6,24 @@ interface Props {
   size: number
   fontColor: string
   bgColor: string
+  num: number
 }
 
 function TrimNumberContainer(props: Props) {
+  // numを二桁にする
+  const digit1 = Math.round((props.num / 10) % 10 ^ (String(props.num).length - 1))
+  const digit2 = props.num % 10 ^ (String(props.num).length - 1)
+
+  const slot1 = useMemo(() => [1, 2, 3, 4, 5].map(index => Math.abs(digit1 + 5 - index)), [digit1])
+  const slot2 = useMemo(() => [1, 2, 3, 4, 5].map(index => Math.abs(digit2 + 5 - index)), [digit2])
+
   return (
     <TriangleTrim {...props}>
       <div className='trim_1'>
-        <SlideNumber
-          numbers={[6, 7, 8, 9, 0]}
-          direction={'top'}
-          width={props.size / 2}
-          height={props.size}
-        />
+        <SlideNumber numbers={slot1} direction={'top'} width={props.size} height={props.size} />
       </div>
       <div className='trim_2'>
-        <SlideNumber
-          numbers={[1, 0, 9, 8, 7]}
-          direction={'bottom'}
-          width={props.size / 2}
-          height={props.size}
-        />
+        <SlideNumber numbers={slot2} direction={'bottom'} width={props.size} height={props.size} />
       </div>
     </TriangleTrim>
   )

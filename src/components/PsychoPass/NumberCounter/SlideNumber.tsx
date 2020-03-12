@@ -5,7 +5,7 @@ import { easeSlideTop, easeSlideBottom } from './keyframe'
 
 interface Props extends AnimContainerProps {
   fontColor: string
-  numbers: number[]
+  numbers: (number | string)[]
   direction: 'top' | 'bottom'
   className?: string & CSSProperties
 }
@@ -15,7 +15,7 @@ export default function SlideNumber(props: Props) {
     <CharContainer {...props}>
       <div className='canvas'>
         <div className='num-container'>
-          {props.numbers.map(num => (
+          {(props.direction === 'top' ? props.numbers : props.numbers.reverse()).map(num => (
             <div className='num'>{num}</div>
           ))}
         </div>
@@ -51,21 +51,22 @@ const CharContainer = styled(AnimContainer)<Props>`
 
       .num {
         font-family: 'DIN Alternate';
-        font-size: ${props => props.width * 2}px;
+        font-size: ${props => props.width}px;
         line-height: ${props => props.height}px;
+        height: ${props => props.height}px;
       }
     }
   }
 
   .num-container {
-    animation: ${props => (props.direction === 'bottom' ? easeSlideBottom : easeSlideTop)} 2.5s ease
+    animation: ${props => (props.direction === 'bottom' ? easeSlideBottom : easeSlideTop)} 3s ease
       0.25s forwards;
   }
 `
 
 SlideNumber.defaultProps = {
-  width: 24,
-  height: 50,
+  width: 48,
+  height: 48,
   fontColor: '#000',
   numbers: [0, 1, 2, 3, 4],
   direction: 'top'
