@@ -20,12 +20,14 @@ storiesOf('Button', module)
   ))
 
 export const Container = styled.div<{ width?: number | string; height?: number | string }>`
+  display: flex;
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
   height: ${({ height }) => (typeof height === 'number' ? `${height}px` : height)};
   margin: 10px 10px 20px;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  align-items: center;
 `
 
 Container.defaultProps = {
