@@ -30,14 +30,14 @@ const SlideOut = keyframes`
 `
 
 const InitCheckColor = keyframes`
-  from { background-color: rgba(255,255,255,0.32) }
-  to { background-color: rgba(0, 255, 254, 0.72); }
+  from { background-color: rgba(255,255,255,0.16) }
+  to { background-color: rgba(0, 255, 254, 0.48); }
 `
 
 const InitedFlash = keyframes`
-  0% { background-color: rgba(0, 255, 254, 0.72); }
+  0% { background-color: rgba(0, 255, 254, 0.48); }
   50% { background-color: rgba(0, 255, 254, 1); }
-  100% { background-color: rgba(0, 255, 254, 0.72); }
+  100% { background-color: rgba(0, 255, 254, 0.48); }
 `
 
 const Container = styled.div`
@@ -47,6 +47,7 @@ const Container = styled.div`
   overflow: hidden;
   width: calc(48px * 4 + 4px * 3);
   padding: 0 ${SidePadding}px;
+  box-sizing: content-box;
 
   > * + * {
     margin-left: 4px;
@@ -62,7 +63,7 @@ const IndicatorWrapper = styled.div<{ index: number }>`
 const InnerBox = styled.div<{ index: number }>`
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.16);
 
   animation: ${InitCheckColor} 0.2s ease ${props => `${startDelay + 1.8 + props.index * 0.2}s`}
       forwards,
