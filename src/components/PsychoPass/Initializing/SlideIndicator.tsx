@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import Indicator from './Indicator'
 
 const SidePadding = 60
+const startDelay = 0
 
 function SlideIndicator() {
   return (
@@ -54,8 +55,8 @@ const Container = styled.div`
 
 const IndicatorWrapper = styled.div<{ index: number }>`
   transform: translateX(calc(48px * 4 + 4px * 3 + ${SidePadding}px + 1px));
-  animation: ${SlideIn} 0.15s ease ${props => `${1 + props.index * 0.1}s`} forwards,
-    ${SlideOut} 0.25s ease ${props => `${3.15 + props.index * 0.1}s`} forwards;
+  animation: ${SlideIn} 0.15s ease ${props => `${startDelay + 1 + props.index * 0.15}s`} forwards,
+    ${SlideOut} 0.25s ease ${props => `${startDelay + 3.15 + props.index * 0.15}s`} forwards;
 `
 
 const InnerBox = styled.div<{ index: number }>`
@@ -63,8 +64,9 @@ const InnerBox = styled.div<{ index: number }>`
   height: 100%;
   background: rgba(255, 255, 255, 0.32);
 
-  animation: ${InitCheckColor} 0.2s ease ${props => `${1.8 + props.index * 0.15}s`} forwards,
-    ${InitedFlash} 0.5s ease 2.65s forwards;
+  animation: ${InitCheckColor} 0.2s ease ${props => `${startDelay + 1.8 + props.index * 0.2}s`}
+      forwards,
+    ${InitedFlash} 0.5s ease ${startDelay + 2.9}s forwards;
 `
 
 export default SlideIndicator

@@ -8,6 +8,7 @@ import SlideLetter from './SlideLetter'
 import styled from 'styled-components'
 import Indicator from './Indicator'
 import SlideIndicator from './SlideIndicator'
+import Initializing from '.'
 
 const stories = storiesOf('Components|AnimBox', module)
 stories.addDecorator(story => <Provider story={story} />)
@@ -35,6 +36,18 @@ stories.addDecorator(withKnobs).add('SlideIndicator', () => {
   return (
     <BlackContainer>
       <SlideIndicator />
+    </BlackContainer>
+  )
+})
+
+stories.addDecorator(withKnobs).add('Initialize', () => {
+  const label = text('text', 'INITIALIZING')
+
+  return (
+    <BlackContainer
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '380px' }}
+    >
+      <Initializing text={label} />
     </BlackContainer>
   )
 })

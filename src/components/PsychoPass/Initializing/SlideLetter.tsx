@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { fadein, fadeout } from 'libs/keyframe'
 
 interface Props {
   text: string
@@ -19,13 +20,15 @@ function SlideLetter({ text, fontSize = 24 }: Props) {
           {char}
         </Indicate>
       ))}
+      <RealText>{`${text}//`}</RealText>
     </FontContainer>
   )
 }
 
-const FontFadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
+const FontSlideOut = keyframes`
+  0% { letter-spacing: 0; opacity: 1; }
+  75% { opacity: 0; }
+  100% { letter-spacing: -30px; }
 `
 
 const FontContainer = styled.div<{ fontSize: number }>`
@@ -43,13 +46,22 @@ const FontContainer = styled.div<{ fontSize: number }>`
 
 const Char = styled.div<{ index: number }>`
   /* Animation */
-  animation: ${FontFadeIn} 0.05s ease ${props => `${0.5 + props.index * 0.025}s`} forwards;
+  animation: ${fadein} 0.05s ease ${props => `${0.5 + props.index * 0.025}s`} forwards,
+    ${fadeout} 0.01s ease 2.5s forwards;
 `
 
 const Indicate = styled.div<{ index: number; charCount: number; delay: number }>`
   /* Animation */
-  animation: ${FontFadeIn} 0.05s ease ${props => `${0.5 + props.charCount * 0.025 + props.delay}s`}
-    forwards;
+  animation: ${fadein} 0.05s ease ${props => `${0.5 + props.charCount * 0.025 + props.delay}s`}
+      forwards,
+    ${fadeout} 0.01s ease 2.6s forwards;
+`
+
+const RealText = styled.div`
+  position: absolute;
+  opacity: 0;
+  letter-spacing: 0;
+  animation: ${fadein} 0.01s ease 2.5s forwards, ${FontSlideOut} 1s ease 3.75s forwards;
 `
 
 export default SlideLetter
