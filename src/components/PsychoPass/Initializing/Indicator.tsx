@@ -8,7 +8,7 @@ interface Props {
 
 export default function Indicator({ children }: Props) {
   return (
-    <IndicatorBox border>
+    <IndicatorBox border style={{ opacity: 0.65 }}>
       <InnterLineBox>
         <IndicatorBox width={40} height={26}>
           {children}
@@ -49,7 +49,6 @@ const InnerLine = styled.div`
   top: 0;
   width: 40%;
   height: 100%;
-  opacity: 0.6;
   border-top: solid;
   border-bottom: solid;
   box-sizing: border-box;
