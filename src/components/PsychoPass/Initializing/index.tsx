@@ -5,13 +5,14 @@ import styled from 'styled-components'
 
 interface Props {
   text: string
+  cat?: boolean
 }
 
-export default function Initializing({ text }: Props) {
+export default function Initializing({ text, cat }: Props) {
   return (
     <Container>
       <SlideLetter text={text} fontSize={28} />
-      <SlideIndicator />
+      <SlideIndicator cat={cat} />
     </Container>
   )
 }

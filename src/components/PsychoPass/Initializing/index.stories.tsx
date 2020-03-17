@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withKnobs, number, text } from '@storybook/addon-knobs'
+import { withKnobs, number, text, select, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import Provider from 'stories/Provider'
 import { Container } from 'stories'
@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import Indicator from './Indicator'
 import SlideIndicator from './SlideIndicator'
 import Initializing from '.'
+import CatIndicator from './CatIndicator'
 
 const stories = storiesOf('Components|AnimBox', module)
 stories.addDecorator(story => <Provider story={story} />)
@@ -32,22 +33,33 @@ stories.addDecorator(withKnobs).add('Indicator', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('SlideIndicator', () => {
+stories.addDecorator(withKnobs).add('CatIndicator', () => {
   return (
     <BlackContainer>
-      <SlideIndicator />
+      <CatIndicator />
+    </BlackContainer>
+  )
+})
+
+stories.addDecorator(withKnobs).add('SlideIndicator', () => {
+  const isCat = boolean('cat', false)
+
+  return (
+    <BlackContainer>
+      <SlideIndicator cat={isCat} />
     </BlackContainer>
   )
 })
 
 stories.addDecorator(withKnobs).add('Initialize', () => {
   const label = text('text', 'INITIALIZING')
+  const isCat = boolean('cat', false)
 
   return (
     <BlackContainer
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '380px' }}
     >
-      <Initializing text={label} />
+      <Initializing text={label} cat={isCat} />
     </BlackContainer>
   )
 })

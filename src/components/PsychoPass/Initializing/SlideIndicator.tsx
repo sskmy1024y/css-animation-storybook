@@ -1,11 +1,14 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import Indicator from './Indicator'
+import NormalIndicator from './Indicator'
+import CatIndicator from './CatIndicator'
 
 const SidePadding = 60
 const startDelay = 0
 
-function SlideIndicator() {
+function SlideIndicator({ cat = false }: { cat?: boolean }) {
+  const Indicator = cat ? CatIndicator : NormalIndicator
+
   return (
     <Container>
       {[0, 1, 2, 3].map(index => (

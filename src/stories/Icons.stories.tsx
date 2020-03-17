@@ -8,6 +8,7 @@ import { Container } from 'stories'
 import ReactIcon from 'components/icons/ReactIcon'
 import styled from 'styled-components'
 import CatOutline from 'components/icons/Cat/Outline'
+import CatIcon from 'components/icons/Cat'
 
 const storiesAll = storiesOf('Foundation|Icon', module)
 storiesAll.addDecorator(withKnobs)
@@ -37,6 +38,14 @@ solo.add('CatOutline', () => {
   return (
     <Container black>
       <CatOutline />
+    </Container>
+  )
+})
+
+solo.add('CatIcon', () => {
+  return (
+    <Container black>
+      <CatIcon />
     </Container>
   )
 })
