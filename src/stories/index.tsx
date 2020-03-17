@@ -5,7 +5,7 @@ import { linkTo } from '@storybook/addon-links'
 import { storiesOf } from '@storybook/react'
 
 import { Button, Welcome } from '@storybook/react/demo'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
 
@@ -19,7 +19,11 @@ storiesOf('Button', module)
     </Button>
   ))
 
-export const Container = styled.div<{ width?: number | string; height?: number | string }>`
+export const Container = styled.div<{
+  width?: number | string
+  height?: number | string
+  black?: boolean
+}>`
   display: flex;
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
   height: ${({ height }) => (typeof height === 'number' ? `${height}px` : height)};
@@ -28,6 +32,12 @@ export const Container = styled.div<{ width?: number | string; height?: number |
   border: 1px solid #ddd;
   border-radius: 5px;
   align-items: center;
+
+  ${({ black }) =>
+    black &&
+    css`
+      background-color: #000;
+    `}
 `
 
 Container.defaultProps = {

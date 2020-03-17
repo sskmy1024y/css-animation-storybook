@@ -7,6 +7,7 @@ import { storiesOf } from '@storybook/react'
 import { Container } from 'stories'
 import ReactIcon from 'components/icons/ReactIcon'
 import styled from 'styled-components'
+import CatOutline from 'components/icons/Cat/Outline'
 
 const storiesAll = storiesOf('Foundation|Icon', module)
 storiesAll.addDecorator(withKnobs)
@@ -26,11 +27,19 @@ storiesAll.add('Icons', () => {
   )
 })
 
-storiesOf('Foundation|Icon', module)
-  .addDecorator(withKnobs)
-  .add('ReactIcon', () => {
-    return <ReactIcon />
-  })
+const solo = storiesOf('Foundation|Icon', module).addDecorator(withKnobs)
+
+solo.add('ReactIcon', () => {
+  return <ReactIcon />
+})
+
+solo.add('CatOutline', () => {
+  return (
+    <Container black>
+      <CatOutline />
+    </Container>
+  )
+})
 
 const IconContainer = styled.div`
   display: flex;
