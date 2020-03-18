@@ -9,7 +9,7 @@ interface Props {
   height?: number
 }
 
-export default function CatOutline({ width = 49, height = 43 }: Props) {
+export default function CatOutline({ width = 48, height = 43 }: Props) {
   return (
     <svg width={width} height={height} viewBox='0 0 49 43'>
       <mask id='path-1-inside-1' fill='white'>

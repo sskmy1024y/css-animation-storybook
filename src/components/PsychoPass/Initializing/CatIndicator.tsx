@@ -39,7 +39,7 @@ const Mask = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  width: 41px;
+  width: 40px;
   height: 35px;
   margin: auto;
   mask-image: url(${CatMask}), none;
