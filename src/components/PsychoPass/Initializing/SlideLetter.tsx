@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { fadein, fadeout } from 'libs/keyframe'
+import { fadeIn, fadeOut } from 'libs/keyframe'
 
 interface Props {
   text: string
@@ -46,22 +46,22 @@ const FontContainer = styled.div<{ fontSize: number }>`
 
 const Char = styled.div<{ index: number }>`
   /* Animation */
-  animation: ${fadein} 0.05s ease ${props => `${0.5 + props.index * 0.025}s`} forwards,
-    ${fadeout} 0.01s ease 2.5s forwards;
+  animation: ${fadeIn} 0.05s ease ${props => `${0.5 + props.index * 0.025}s`} forwards,
+    ${fadeOut} 0.01s ease 2.5s forwards;
 `
 
 const Indicate = styled.div<{ index: number; charCount: number; delay: number }>`
   /* Animation */
-  animation: ${fadein} 0.05s ease ${props => `${0.5 + props.charCount * 0.025 + props.delay}s`}
+  animation: ${fadeIn} 0.05s ease ${props => `${0.5 + props.charCount * 0.025 + props.delay}s`}
       forwards,
-    ${fadeout} 0.01s ease 2.6s forwards;
+    ${fadeOut} 0.01s ease 2.6s forwards;
 `
 
 const RealText = styled.div`
   position: absolute;
   opacity: 0;
   letter-spacing: 0;
-  animation: ${fadein} 0.01s ease 2.5s forwards, ${FontSlideOut} 1s ease 3.75s forwards;
+  animation: ${fadeIn} 0.01s ease 2.5s forwards, ${FontSlideOut} 1s ease 3.75s forwards;
 `
 
 export default SlideLetter

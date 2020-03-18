@@ -23,3 +23,13 @@ export const slideBottom = keyframes`
   from { transform: translateY(-100%); }
   to   { transform: translateY(0%); }
 `
+
+export const slideToLeftOver = keyframes`
+  from { transform: translateX(101%); }
+  to { transform: translateX(-101%); }
+`
+
+export const slideToRightOver = keyframes`
+  from { transform: translateX(-101%); }
+  to { transform: translateX(101%); }
+`
