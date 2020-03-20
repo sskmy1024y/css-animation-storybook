@@ -6,6 +6,7 @@ import Window from './Window'
 import Detail from './Detail'
 import Noise, { DivSize } from './Noise'
 import { fadeIn } from 'libs/keyframe'
+import CircleButton from 'components/AnimButton/CircleButton'
 
 interface Props {
   delay?: number
@@ -21,6 +22,10 @@ export default function ProfileCard({ delay = 0 }: Props) {
         </Noise>
       </ImageContainer>
       <Detail delay={delay} name={'sho yamashita'} />
+      <SocialContainer>
+        <CircleButton size={50} delay={1.5} />
+        <CircleButton size={50} delay={2} />
+      </SocialContainer>
     </Window>
   )
 }
@@ -53,4 +58,26 @@ const ProfileImage = styled.div<{ imgSrc: string }>`
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
+`
+
+const SocialContainer = styled.div`
+  position: absolute;
+  display: flex;
+  top: 75%;
+  left: 46%;
+
+  > * {
+    opacity: 0;
+
+    &:nth-of-type(1) {
+      animation: ${fadeIn} 1s ease-in 1s forwards;
+    }
+    &:nth-of-type(2) {
+      animation: ${fadeIn} 1s ease-in 1.4s forwards;
+    }
+  }
+
+  > * + * {
+    margin-left: 32px;
+  }
 `

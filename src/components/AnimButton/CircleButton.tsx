@@ -3,23 +3,34 @@ import styled, { css, keyframes } from 'styled-components'
 import { Colors } from 'libs/Colors'
 
 const MainColor = Colors.brand
-const SubColor = '#fff'
+const SubColor = '#1F1F1F'
 
 export interface CircleProps {
   size: number
+  href?: string
+  color?: string
   lineSize?: number
   duration?: number
+  delay?: number
   children?: React.ReactNode
 }
 
-function CircleButton({ size, lineSize = 3, duration = 0.5, children }: CircleProps) {
+function CircleButton({
+  size,
+  href,
+  color = '#1F1F1F',
+  lineSize = 3,
+  duration = 1,
+  delay = 0,
+  children
+}: CircleProps) {
   return (
-    <Container size={size}>
+    <Container size={size} delay={delay}>
       <ButtonBackground>
         <BackInner />
       </ButtonBackground>
-      <CircleContainer size={size} duration={duration}>
-        <CircleBody size={size} lineSize={lineSize}>
+      <CircleContainer href={href} size={size} duration={duration} delay={delay}>
+        <CircleBody size={size} color={color} lineSize={lineSize}>
           {children}
         </CircleBody>
       </CircleContainer>
@@ -84,18 +95,19 @@ const CircleBody = styled.div<CircleProps>`
   display: flex;
   width: ${props => props.size - (props.lineSize ?? 0) * 2}px;
   height: ${props => props.size - (props.lineSize ?? 0) * 2}px;
-  background-color: #fff;
+  background-color: ${({ color }) => color};
   border-radius: 50%;
   align-items: center;
   justify-content: center;
   z-index: 4;
+  cursor: pointer;
 
   &:after {
     content: '';
     display: block;
     width: 100%;
     height: 100%;
-    background-color: ${Colors.black};
+    background-color: #f5f5f5;
     border-radius: 50%;
     transform: scale(0);
     transition: transform 0.15s 0.1s;
@@ -126,7 +138,7 @@ const Container = styled.div<CircleProps>`
   }
 `
 
-const CircleContainer = styled.button<CircleProps>`
+const CircleContainer = styled.a<CircleProps>`
   position: relative;
   display: flex;
   width: ${props => props.size}px;
@@ -151,7 +163,8 @@ const CircleContainer = styled.button<CircleProps>`
     background: ${SubColor};
     transform-origin: right 50%;
     z-index: 2;
-    animation: ${RotateCircleLeft} ${props => `${props.duration}s`} linear forwards;
+    animation: ${RotateCircleLeft} ${props => `${props.duration}s`} linear
+      ${props => `${props.delay}s`} forwards;
   }
 
   &::after {
@@ -165,7 +178,8 @@ const CircleContainer = styled.button<CircleProps>`
     background: ${SubColor};
     transform-origin: left 50%;
     z-index: 3;
-    animation: ${RotateCircleRight} ${props => `${props.duration}s`} linear forwards;
+    animation: ${RotateCircleRight} ${props => `${props.duration}s`} linear
+      ${props => `${props.delay}s`} forwards;
   }
 `
 
