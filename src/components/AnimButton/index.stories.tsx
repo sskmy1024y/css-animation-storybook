@@ -8,8 +8,9 @@ import { Container } from 'stories'
 import OkButton from './OKButton'
 import CancelButton from './CancelButton'
 import PlayButton from './PlayButton'
+import CircleButton from './CircleButton'
 
-const stories = storiesOf('Components,AnimButton', module)
+const stories = storiesOf('Components|AnimButton', module)
 stories.addDecorator(story => <Provider story={story} />)
 stories.addDecorator(withKnobs)
 
@@ -42,6 +43,17 @@ stories.add('PlayButton', () => {
   return (
     <Container>
       <PlayButton size={size} color={color} />
+    </Container>
+  )
+})
+
+stories.add('CircleButton', () => {
+  const size = number('size', 50)
+  const color = text('color', '#ea8b98')
+
+  return (
+    <Container black>
+      <CircleButton size={size} />
     </Container>
   )
 })
