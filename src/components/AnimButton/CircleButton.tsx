@@ -8,31 +8,38 @@ const SubColor = '#1F1F1F'
 export interface CircleProps {
   size: number
   href?: string
-  color?: string
   lineSize?: number
   duration?: number
   delay?: number
   children?: React.ReactNode
+  onClick?(): void
 }
 
 function CircleButton({
   size,
   href,
-  color = '#1F1F1F',
   lineSize = 3,
   duration = 1,
   delay = 0,
-  children
+  children,
+  onClick
 }: CircleProps) {
   return (
     <Container size={size} delay={delay}>
       <ButtonBackground>
         <BackInner />
       </ButtonBackground>
-      <CircleContainer href={href} size={size} duration={duration} delay={delay}>
-        <CircleBody size={size} color={color} lineSize={lineSize}>
-          {children}
-        </CircleBody>
+      <CircleContainer
+        href={href}
+        size={size}
+        duration={duration}
+        delay={delay}
+        onClick={onClick}
+        target='_blank'
+        rel='noopener'
+      >
+        <CircleBody size={size} lineSize={lineSize} />
+        <InnerContainer>{children}</InnerContainer>
       </CircleContainer>
     </Container>
   )
@@ -86,23 +93,22 @@ const ButtonBackground = styled.div`
   border-radius: 50%;
 `
 
+/* カーソルホバー時のアニメーション */
 const Hovering = keyframes`
   0%, 100% { transform: scale(1.5); }
   50% { transform: scale(1.6); }
 `
 
 const CircleBody = styled.div<CircleProps>`
-  display: flex;
+  position: absolute;
   width: ${props => props.size - (props.lineSize ?? 0) * 2}px;
   height: ${props => props.size - (props.lineSize ?? 0) * 2}px;
-  background-color: ${({ color }) => color};
+  background-color: ${SubColor};
   border-radius: 50%;
-  align-items: center;
-  justify-content: center;
   z-index: 4;
   cursor: pointer;
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     width: 100%;
@@ -114,6 +120,15 @@ const CircleBody = styled.div<CircleProps>`
   }
 `
 
+/* childrenコンテナ */
+const InnerContainer = styled.div`
+  position: absolute;
+  color: ${Colors.brand};
+  z-index: 5;
+  transition: color 0.3s;
+  cursor: pointer;
+`
+
 const Container = styled.div<CircleProps>`
   display: flex;
   position: relative;
@@ -121,6 +136,7 @@ const Container = styled.div<CircleProps>`
   height: ${props => props.size}px;
   border-radius: 50%;
 
+  /* ホバートリガー */
   &:hover {
     ${CircleBody} {
       &:after {
@@ -134,6 +150,11 @@ const Container = styled.div<CircleProps>`
       transition: transform 0.5s;
 
       animation: ${Hovering} 1s ease 0.3s forwards infinite;
+    }
+
+    ${InnerContainer} {
+      color: ${SubColor};
+      transition: color 0.3s;
     }
   }
 `
