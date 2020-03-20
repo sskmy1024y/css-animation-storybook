@@ -7,25 +7,28 @@ import { fadeIn } from 'libs/keyframe'
 
 interface Props {
   name: string
+  delay?: number
 }
 
-export default function Detail({ name }: Props) {
+export default function Detail({ name, delay = 0 }: Props) {
   return (
     <>
       <IdContainer>
-        <Noise delay={1}>sskmy1024</Noise>
+        <Noise delay={delay + 0.65}>sskmy1024</Noise>
       </IdContainer>
       <NameContainer>
-        <Noise delay={1}>{name}</Noise>
+        <Noise delay={delay + 1.3}>{name}</Noise>
       </NameContainer>
       <DetailContainer>
-        <Noise delay={0.7}>
+        <Noise delay={delay + 0.9}>
           <span>1997年10月24日生</span>
           <span>22歳</span>
         </Noise>
       </DetailContainer>
       <BarcodeWrapper>
-        <Barcode />
+        <Noise delay={delay + 1.1}>
+          <Barcode />
+        </Noise>
       </BarcodeWrapper>
     </>
   )
@@ -45,7 +48,12 @@ const IdContainer = styled.div`
 
   border: 2px solid ${Colors.white};
   border-radius: 2px;
-  padding: 2px 16px;
+  opacity: 0;
+  animation: ${fadeIn} 0.2s ease-out 0.5s forwards;
+
+  > * {
+    margin: 2px 16px;
+  }
 `
 
 const NameContainer = styled.div`
@@ -57,7 +65,7 @@ const NameContainer = styled.div`
   line-height: 60px;
   opacity: 0;
 
-  animation: ${fadeIn} 0.2s ease-out 0.65s forwards;
+  animation: ${fadeIn} 0.2s ease-out 1.2s forwards;
 `
 
 const DetailContainer = styled.div`
@@ -73,7 +81,7 @@ const DetailContainer = styled.div`
   text-overflow: ellipsis;
   opacity: 0;
 
-  animation: ${fadeIn} 0.1s ease-out 0.45s forwards;
+  animation: ${fadeIn} 0.1s ease-out 0.85s forwards;
 
   span + span {
     margin-left: 24px;
@@ -86,4 +94,7 @@ const BarcodeWrapper = styled.div`
   left: 46%;
   width: 45%;
   overflow: hidden;
+
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out 0.9s forwards;
 `

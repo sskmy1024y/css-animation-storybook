@@ -1,16 +1,22 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
+
+export enum DivSize {
+  Auto = 'auto',
+  Cover = 'cover'
+}
 
 interface Props {
+  size?: DivSize
   delay?: number
   children: React.ReactNode | string
 }
 
-export default function Noise({ delay, children }: Props) {
+export default function Noise({ size = DivSize.Auto, delay, children }: Props) {
   return (
     <>
       {[...Array(5)].map((_, key) => (
-        <NoiseDiv key={key} delay={delay ?? 0}>
+        <NoiseDiv key={key} size={size} delay={delay ?? 0}>
           {children}
         </NoiseDiv>
       ))}
@@ -44,7 +50,7 @@ const noise5 = keyframes`
   50% { transform: translateX(30px); }
 `
 
-const NoiseDiv = styled.div<{ delay: number }>`
+const NoiseDiv = styled.div<{ delay: number; size: DivSize }>`
   &:first-of-type {
     position: relative;
     mask-image: linear-gradient(to bottom, black 0% 35%, transparent 35%);
@@ -90,4 +96,12 @@ const NoiseDiv = styled.div<{ delay: number }>`
     animation-name: ${noise5};
     animation-delay: ${({ delay }) => `${delay}s`};
   }
+
+  /* 親コンポーネントのサイズに合わせる */
+  ${({ size }) =>
+    size === DivSize.Cover &&
+    css`
+      width: 100%;
+      height: 100%;
+    `}
 `
