@@ -13,7 +13,7 @@ interface Props {
 export default function CatIcon({ width = 41, height = 36 }: Props) {
   return (
     <svg width={width} height={height} viewBox='0 0 41 36'>
-      <path fill-rule='evenodd' clip-rule='evenodd' d={path} fill={Colors.brand} />
+      <path fillRule='evenodd' clipRule='evenodd' d={path} fill={Colors.brand} />
     </svg>
   )
 }

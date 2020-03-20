@@ -9,10 +9,11 @@ import TrimNumberContainer from './TrimNumber'
 import SlideNumber from './SlideNumber'
 import styled from 'styled-components'
 
-const stories = storiesOf('Components|AnimBox', module)
+const stories = storiesOf('Components|SlotNumber', module)
 stories.addDecorator(story => <Provider story={story} />)
+stories.addDecorator(withKnobs)
 
-stories.addDecorator(withKnobs).add('SlideNumber', () => {
+stories.add('SlideNumber', () => {
   const direction = select(
     'direction',
     {
@@ -29,7 +30,7 @@ stories.addDecorator(withKnobs).add('SlideNumber', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('NumberContainer', () => {
+stories.add('NumberContainer', () => {
   return (
     <Container>
       <NumberContainer />
@@ -37,7 +38,7 @@ stories.addDecorator(withKnobs).add('NumberContainer', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('TrimNumber', () => {
+stories.add('TrimNumber', () => {
   return (
     <Wrapper>
       <TrimNumberContainer size={48} num={1} />

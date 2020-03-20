@@ -12,8 +12,9 @@ import ProfileCard from '.'
 
 const stories = storiesOf('Components|ProfileCard', module)
 stories.addDecorator(story => <Provider story={story} />)
+stories.addDecorator(withKnobs)
 
-stories.addDecorator(withKnobs).add('BaseWindow', () => {
+stories.add('BaseWindow', () => {
   const width = number('width', 902)
   const height = number('height', 519)
 
@@ -24,7 +25,7 @@ stories.addDecorator(withKnobs).add('BaseWindow', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('ProfileCard', () => {
+stories.add('ProfileCard', () => {
   const width = number('width', 902)
   const height = number('height', 519)
 
@@ -46,7 +47,7 @@ stories.addDecorator(withKnobs).add('ProfileCard', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('NoizeAnimWindow', () => {
+stories.add('NoizeAnimWindow', () => {
   return (
     <Container style={{ width: 'auto' }}>
       <ProfileCard />

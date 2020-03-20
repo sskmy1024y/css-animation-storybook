@@ -13,8 +13,9 @@ import CatIndicator from './CatIndicator'
 
 const stories = storiesOf('Components|AnimBox', module)
 stories.addDecorator(story => <Provider story={story} />)
+stories.addDecorator(withKnobs)
 
-stories.addDecorator(withKnobs).add('SlideLetter', () => {
+stories.add('SlideLetter', () => {
   const size = number('fontSize', 24)
   const letter = text('text', 'INITIALIZING')
 
@@ -25,7 +26,7 @@ stories.addDecorator(withKnobs).add('SlideLetter', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('Indicator', () => {
+stories.add('Indicator', () => {
   return (
     <BlackContainer>
       <Indicator />
@@ -33,7 +34,7 @@ stories.addDecorator(withKnobs).add('Indicator', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('CatIndicator', () => {
+stories.add('CatIndicator', () => {
   return (
     <BlackContainer>
       <CatIndicator />
@@ -41,7 +42,7 @@ stories.addDecorator(withKnobs).add('CatIndicator', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('SlideIndicator', () => {
+stories.add('SlideIndicator', () => {
   const isCat = boolean('cat', false)
 
   return (
@@ -51,7 +52,7 @@ stories.addDecorator(withKnobs).add('SlideIndicator', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('Initialize', () => {
+stories.add('Initialize', () => {
   const label = text('text', 'INITIALIZING')
   const isCat = boolean('cat', false)
 

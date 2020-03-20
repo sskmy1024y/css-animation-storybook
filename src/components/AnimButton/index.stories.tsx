@@ -9,10 +9,11 @@ import OkButton from './OKButton'
 import CancelButton from './CancelButton'
 import PlayButton from './PlayButton'
 
-const stories = storiesOf('Components|AnimButton', module)
+const stories = storiesOf('Components,AnimButton', module)
 stories.addDecorator(story => <Provider story={story} />)
+stories.addDecorator(withKnobs)
 
-stories.addDecorator(withKnobs).add('OkButton', () => {
+stories.add('OkButton', () => {
   const size = number('size', 50)
   const color = text('color', '#90bdbd')
 
@@ -23,7 +24,7 @@ stories.addDecorator(withKnobs).add('OkButton', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('CancelButton', () => {
+stories.add('CancelButton', () => {
   const size = number('size', 50)
   const color = text('color', '#ea8b98')
 
@@ -34,7 +35,7 @@ stories.addDecorator(withKnobs).add('CancelButton', () => {
   )
 })
 
-stories.addDecorator(withKnobs).add('PlayButton', () => {
+stories.add('PlayButton', () => {
   const size = number('size', 50)
   const color = text('color', '#ea8b98')
 

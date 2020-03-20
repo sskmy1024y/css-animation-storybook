@@ -12,7 +12,9 @@ interface Props {
 export default function Detail({ name }: Props) {
   return (
     <>
-      <IdContainer>{'sskmy1024'}</IdContainer>
+      <IdContainer>
+        <Noise delay={1}>sskmy1024</Noise>
+      </IdContainer>
       <NameContainer>
         <Noise delay={1}>{name}</Noise>
       </NameContainer>

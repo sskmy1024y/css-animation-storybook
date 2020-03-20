@@ -10,7 +10,7 @@ const path = `M0 0H1.09572V26H0V0ZM3.55014 0H4.64586V26H3.55014V0ZM5.74158 0H8.1
 export default function Barcode({ width = 356, height = 26 }: Props) {
   return (
     <svg width={width} height={height} viewBox='0 0 356 26' fill='none'>
-      <path fill-rule='evenodd' clip-rule='evenodd' d={path} fill='#00FFFE' fill-opacity='0.64' />
+      <path fillRule='evenodd' clipRule='evenodd' d={path} fill='#00FFFE' fillOpacity='0.64' />
     </svg>
   )
 }
