@@ -42,6 +42,10 @@ function webpackConfig(rawEnv, optionArg) {
               loader: 'sass-loader'
             }
           ]
+        },
+        {
+          test: /\.(jpg|png)$/,
+          loaders: 'url-loader'
         }
       ]
     },
