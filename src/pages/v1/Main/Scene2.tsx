@@ -24,6 +24,7 @@ const Container = styled.div<{ delay: number }>`
   height: 100%;
   align-items: center;
   justify-content: center;
+
   > * {
     opacity: 0;
     transform-origin: 0 0;

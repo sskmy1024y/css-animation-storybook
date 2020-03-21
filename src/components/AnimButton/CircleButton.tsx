@@ -5,7 +5,7 @@ import { Colors } from 'libs/Colors'
 const MainColor = Colors.brand
 const SubColor = '#1F1F1F'
 
-export interface CircleProps {
+interface CircleProps {
   size: number
   href?: string
   lineSize?: number
@@ -124,7 +124,7 @@ const CircleBody = styled.div<CircleProps>`
 const InnerContainer = styled.div`
   display: flex;
   position: absolute;
-  color: ${Colors.brand};
+  color: ${Colors.white};
   z-index: 5;
   transition: color 0.3s;
   cursor: pointer;

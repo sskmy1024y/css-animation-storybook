@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import GitHubIcon from 'components/icons/GitHub'
 import { fadeIn } from 'libs/keyframe'
 import TwitterIcon from 'components/icons/Twitter'
+import { media } from 'libs/Media'
 
 export default function Social() {
   return (
@@ -38,5 +39,10 @@ const SocialContainer = styled.div`
 
   > * + * {
     margin-left: 24px;
+  }
+
+  ${media.smallDown} {
+    transform: scale(0.6);
+    transform-origin: top left;
   }
 `

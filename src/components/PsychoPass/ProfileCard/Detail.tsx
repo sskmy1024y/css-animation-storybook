@@ -4,6 +4,7 @@ import Barcode from './Barcode'
 import { Colors } from 'libs/Colors'
 import Noise from './Noise'
 import { fadeIn } from 'libs/keyframe'
+import { media } from 'libs/Media'
 
 interface Props {
   name: string
@@ -40,18 +41,22 @@ const IdContainer = styled.div`
   position: absolute;
   min-width: 45%;
   max-width: 50%;
-  height: 60px;
+  height: 11%;
   left: 46%;
   top: 22%;
-
-  font-size: 32px;
-  line-height: 52px;
   color: ${Colors.white};
-
   border: 2px solid ${Colors.white};
   border-radius: 2px;
   opacity: 0;
   animation: ${fadeIn} 0.2s ease-out 0.5s forwards;
+
+  font-size: 32px;
+  line-height: 52px;
+
+  ${media.smallDown} {
+    font-size: 18px;
+    line-height: 1.8em;
+  }
 
   > * {
     margin: 2px 16px;
@@ -62,10 +67,18 @@ const NameContainer = styled.div`
   position: absolute;
   left: 46%;
   top: 40%;
+  max-width: 40%;
   color: ${Colors.white};
   font-size: 52px;
   line-height: 60px;
+  white-space: nowrap;
   opacity: 0;
+
+  ${media.smallDown} {
+    font-size: 24px;
+    line-height: 1.8em;
+    font-weight: bold;
+  }
 
   animation: ${fadeIn} 0.2s ease-out 1.2s forwards;
 `
@@ -78,15 +91,20 @@ const DetailContainer = styled.div`
   color: ${Colors.white};
   font-size: 32px;
   line-height: 36px;
-  overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
   opacity: 0;
 
   animation: ${fadeIn} 0.1s ease-out 0.85s forwards;
-
   span + span {
     margin-left: 24px;
+  }
+
+  ${media.smallDown} {
+    font-size: 14px;
+    line-height: 1.4em;
+    span + span {
+      margin-left: 6px;
+    }
   }
 `
 
@@ -95,6 +113,7 @@ const BarcodeWrapper = styled.div`
   top: 63%;
   left: 46%;
   width: 45%;
+  height: 5%;
   overflow: hidden;
 
   opacity: 0;

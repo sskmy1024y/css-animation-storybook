@@ -2,6 +2,7 @@ import React from 'react'
 import BackgroundImg from './BaseComponent.png'
 import BackgroundImgWhite from './BaseComponentWhite.png'
 import styled from 'styled-components'
+import { media } from 'libs/Media'
 
 interface Props {
   width?: number
@@ -25,4 +26,9 @@ const WindowComponent = styled.div<Props>`
   background-image: url(${({ white }) => (white ? BackgroundImgWhite : BackgroundImg)});
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  ${media.smallDown} {
+    width: 100%;
+    height: 40%;
+  }
 `

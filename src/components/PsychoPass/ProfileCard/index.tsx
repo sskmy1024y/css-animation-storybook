@@ -7,6 +7,7 @@ import Detail from './Detail'
 import Noise, { DivSize } from './Noise'
 import { fadeIn } from 'libs/keyframe'
 import Social from './Social'
+import { media } from 'libs/Media'
 
 interface Props {
   delay?: number
@@ -15,7 +16,7 @@ interface Props {
 export default function ProfileCard({ delay = 0 }: Props) {
   return (
     <Window>
-      <HeaderText>{'ID-CTRL 0457'}</HeaderText>
+      <HeaderText>{'MY-PROFILE 0001'}</HeaderText>
       <ImageContainer>
         <Noise delay={delay + 1} size={DivSize.Cover} infinite={9}>
           <ProfileImage imgSrc={'https://github.com/sskmy1024y.png'} />
@@ -34,6 +35,11 @@ const HeaderText = styled.div`
   font-size: 28px;
   line-height: 36px;
   color: ${Colors.brand};
+
+  ${media.smallDown} {
+    font-size: 14px;
+    line-height: 1.4em;
+  }
 `
 
 const ImageContainer = styled.div`
