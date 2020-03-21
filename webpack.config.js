@@ -46,6 +46,10 @@ function webpackConfig(rawEnv, optionArg) {
         {
           test: /\.(jpg|png)$/,
           loaders: 'url-loader'
+        },
+        {
+          test: /\.(txt|md)$/,
+          loaders: 'raw-loader'
         }
       ]
     },

@@ -40,6 +40,11 @@ declare module '*.webp' {
   export default src
 }
 
+declare module '*.md' {
+  const src: string
+  export default src
+}
+
 declare module '*.svg' {
   // eslint-disable-next-line no-unused-vars
   import * as React from 'react'
