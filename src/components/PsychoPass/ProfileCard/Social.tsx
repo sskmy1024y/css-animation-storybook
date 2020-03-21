@@ -6,9 +6,13 @@ import { fadeIn } from 'libs/keyframe'
 import TwitterIcon from 'components/icons/Twitter'
 import { media } from 'libs/Media'
 
-export default function Social() {
+interface Props {
+  delay?: number
+}
+
+export default function Social({ delay = 0 }: Props) {
   return (
-    <SocialContainer>
+    <SocialContainer delay={delay}>
       <CircleButton size={50} delay={1.5} href={'https://github.com/sskmy1024y'}>
         <GitHubIcon size={32} />
       </CircleButton>
@@ -19,7 +23,7 @@ export default function Social() {
   )
 }
 
-const SocialContainer = styled.div`
+const SocialContainer = styled.div<{ delay: number }>`
   position: absolute;
   display: flex;
   top: 75%;
@@ -30,10 +34,10 @@ const SocialContainer = styled.div`
     opacity: 0;
 
     &:nth-of-type(1) {
-      animation: ${fadeIn} 1s ease-in 1s forwards;
+      animation: ${fadeIn} 1s ease-in ${({ delay }) => `${delay + 1.5}s`} forwards;
     }
     &:nth-of-type(2) {
-      animation: ${fadeIn} 1s ease-in 1.4s forwards;
+      animation: ${fadeIn} 1s ease-in ${({ delay }) => `${delay + 2}s`} forwards;
     }
   }
 

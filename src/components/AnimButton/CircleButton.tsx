@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css, keyframes } from 'styled-components'
 import { Colors } from 'libs/Colors'
+import { fadeIn } from 'libs/keyframe'
 
 const MainColor = Colors.brand
 const SubColor = '#1F1F1F'
@@ -39,7 +40,7 @@ function CircleButton({
         rel='noopener'
       >
         <CircleBody size={size} lineSize={lineSize} />
-        <InnerContainer>{children}</InnerContainer>
+        <InnerContainer delay={delay}>{children}</InnerContainer>
       </CircleContainer>
     </Container>
   )
@@ -121,13 +122,18 @@ const CircleBody = styled.div<CircleProps>`
 `
 
 /* childrenコンテナ */
-const InnerContainer = styled.div`
+const InnerContainer = styled.div<{ delay: number }>`
   display: flex;
   position: absolute;
   color: ${Colors.white};
   z-index: 5;
   transition: color 0.3s;
   cursor: pointer;
+
+  > * {
+    opacity: 0;
+    animation: ${fadeIn} 0.25s ease ${({ delay }) => `${delay + 1.1}s`} forwards;
+  }
 `
 
 const Container = styled.div<CircleProps>`

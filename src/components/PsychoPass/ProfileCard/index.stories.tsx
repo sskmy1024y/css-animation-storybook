@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withKnobs, number } from '@storybook/addon-knobs'
+import { withKnobs, number, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import Provider from 'stories/Provider'
 import { Container } from 'stories'
@@ -17,10 +17,11 @@ stories.addDecorator(withKnobs)
 stories.add('BaseWindow', () => {
   const width = number('width', 902)
   const height = number('height', 519)
+  const white = boolean('white', false)
 
   return (
     <Container>
-      <Window width={width} height={height} />
+      <Window width={width} height={height} white={white} />
     </Container>
   )
 })
