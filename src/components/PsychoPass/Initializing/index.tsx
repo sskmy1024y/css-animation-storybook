@@ -6,13 +6,14 @@ import styled from 'styled-components'
 interface Props {
   text: string
   cat?: boolean
+  delay?: number
 }
 
-export default function Initializing({ text, cat }: Props) {
+export default function Initializing({ text, cat, delay }: Props) {
   return (
     <Container>
       <SlideLetter text={text} fontSize={28} />
-      <SlideIndicator cat={cat} />
+      <SlideIndicator cat={cat} delay={delay} />
     </Container>
   )
 }

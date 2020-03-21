@@ -122,6 +122,7 @@ const CircleBody = styled.div<CircleProps>`
 
 /* childrenコンテナ */
 const InnerContainer = styled.div`
+  display: flex;
   position: absolute;
   color: ${Colors.brand};
   z-index: 5;

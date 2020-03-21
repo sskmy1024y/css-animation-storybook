@@ -9,14 +9,15 @@ export enum DivSize {
 interface Props {
   size?: DivSize
   delay?: number
+  infinite?: number | false // interval
   children: React.ReactNode | string
 }
 
-export default function Noise({ size = DivSize.Auto, delay, children }: Props) {
+export default function Noise({ size = DivSize.Auto, delay, infinite = false, children }: Props) {
   return (
     <>
       {[...Array(5)].map((_, key) => (
-        <NoiseDiv key={key} size={size} delay={delay ?? 0}>
+        <NoiseDiv key={key} size={size} delay={delay ?? 0} infinite={infinite}>
           {children}
         </NoiseDiv>
       ))}
@@ -50,7 +51,33 @@ const noise5 = keyframes`
   50% { transform: translateX(30px); }
 `
 
-const NoiseDiv = styled.div<{ delay: number; size: DivSize }>`
+const noiseDelay1 = keyframes`
+  0%, 1%, 100% { transform: translateX(0); }
+  0.5% { transform: translateX(-30px); }
+`
+
+const noiseDelay2 = keyframes`
+  0%, 1%, 100% { transform: translateX(0); }
+  0.5% { transform: translateX(58px); }
+`
+
+const noiseDelay3 = keyframes`
+  0%, 1%, 100% { transform: translateX(0); }
+  0.33% { transform: translateX(46px); }
+  0.66% { transform: translateX(-46px); }
+`
+
+const noiseDelay4 = keyframes`
+  0%, 1%, 100% { transform: translateX(0); }
+  0.5% { transform: translateX(-58px); }
+`
+
+const noiseDelay5 = keyframes`
+  0%, 1%, 100% { transform: translateX(0); }
+  0.5% { transform: translateX(30px); }
+`
+
+const NoiseDiv = styled.div<{ delay: number; size: DivSize; infinite: number | false }>`
   &:first-of-type {
     position: relative;
     mask-image: linear-gradient(to bottom, black 0% 35%, transparent 35%);
@@ -74,28 +101,47 @@ const NoiseDiv = styled.div<{ delay: number; size: DivSize }>`
   }
 
   /* アニメーション */
-  animation: 0.12s ease-in-out ${({ delay }) => `${delay + 1}s`} forwards;
-
-  &:nth-of-type(1) {
-    animation-name: ${noise1};
-    animation-delay: ${({ delay }) => `${delay}s`};
-  }
-  &:nth-of-type(2) {
-    animation-name: ${noise2};
-    animation-delay: ${({ delay }) => `${delay + 0.1}s`};
-  }
-  &:nth-of-type(3) {
-    animation-name: ${noise3};
-    animation-delay: ${({ delay }) => `${delay + 0.1}s`};
-  }
-  &:nth-of-type(4) {
-    animation-name: ${noise4};
-    animation-delay: ${({ delay }) => `${delay + 0.1}s`};
-  }
-  &:nth-of-type(5) {
-    animation-name: ${noise5};
-    animation-delay: ${({ delay }) => `${delay}s`};
-  }
+  ${({ delay, infinite }) =>
+    infinite
+      ? css`
+          &:nth-of-type(1) {
+            animation: ${noise1} 0.12s ease-in-out ${`${delay}s`} forwards,
+              ${noiseDelay1} 10s linear ${`${infinite + delay}s`} forwards infinite;
+          }
+          &:nth-of-type(2) {
+            animation: ${noise2} 0.12s ease-in-out ${`${delay + 0.1}s`} forwards,
+              ${noiseDelay2} 10s linear ${`${infinite + delay + 0.1}s`} forwards infinite;
+          }
+          &:nth-of-type(3) {
+            animation: ${noise3} 0.12s ease-in-out ${`${delay + 0.1}s`} forwards,
+              ${noiseDelay3} 10s linear ${`${infinite + delay + 0.1}s`} forwards infinite;
+          }
+          &:nth-of-type(4) {
+            animation: ${noise4} 0.12s ease-in-out ${`${delay + 0.1}s`} forwards,
+              ${noiseDelay4} 10s linear ${`${infinite + delay + 0.1}s`} forwards infinite;
+          }
+          &:nth-of-type(5) {
+            animation: ${noise5} 0.12s ease-in-out ${`${delay}s`} forwards,
+              ${noiseDelay5} 10s linear ${`${infinite + delay}s`} forwards infinite;
+          }
+        `
+      : css`
+          &:nth-of-type(1) {
+            animation: ${noise1} 0.12s ease-in-out ${`${delay}s`} forwards;
+          }
+          &:nth-of-type(2) {
+            animation: ${noise2} 0.12s ease-in-out ${`${delay + 0.1}s`} forwards;
+          }
+          &:nth-of-type(3) {
+            animation: ${noise3} 0.12s ease-in-out ${`${delay + 0.1}s`} forwards;
+          }
+          &:nth-of-type(4) {
+            animation: ${noise4} 0.12s ease-in-out ${`${delay + 0.1}s`} forwards;
+          }
+          &:nth-of-type(5) {
+            animation: ${noise5} 0.12s ease-in-out ${`${delay}s`} forwards;
+          }
+        `}
 
   /* 親コンポーネントのサイズに合わせる */
   ${({ size }) =>

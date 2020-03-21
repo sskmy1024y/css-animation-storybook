@@ -17,7 +17,7 @@ export default function ProfileCard({ delay = 0 }: Props) {
     <Window>
       <HeaderText>{'ID-CTRL 0457'}</HeaderText>
       <ImageContainer>
-        <Noise delay={delay + 1} size={DivSize.Cover}>
+        <Noise delay={delay + 1} size={DivSize.Cover} infinite={9}>
           <ProfileImage imgSrc={'https://github.com/sskmy1024y.png'} />
         </Noise>
       </ImageContainer>
@@ -42,7 +42,6 @@ const ImageContainer = styled.div`
   height: 78%;
   top: 16%;
   left: 6.4%;
-  overflow: hidden;
 
   opacity: 0;
   animation: ${fadeIn} 0.3s ease-out 0.7s forwards;

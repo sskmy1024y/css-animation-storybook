@@ -14,13 +14,15 @@ export default function Detail({ name, delay = 0 }: Props) {
   return (
     <>
       <IdContainer>
-        <Noise delay={delay + 0.65}>sskmy1024</Noise>
+        <Noise delay={delay + 0.65} infinite={7}>{`ID: sskmy1024`}</Noise>
       </IdContainer>
       <NameContainer>
-        <Noise delay={delay + 1.3}>{name}</Noise>
+        <Noise delay={delay + 1.3} infinite={4}>
+          {name}
+        </Noise>
       </NameContainer>
       <DetailContainer>
-        <Noise delay={delay + 0.9}>
+        <Noise delay={delay + 0.9} infinite={6}>
           <span>1997年10月24日生</span>
           <span>22歳</span>
         </Noise>

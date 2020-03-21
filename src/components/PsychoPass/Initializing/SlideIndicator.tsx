@@ -4,17 +4,21 @@ import NormalIndicator from './Indicator'
 import CatIndicator from './CatIndicator'
 
 const SidePadding = 60
-const startDelay = 0
 
-function SlideIndicator({ cat = false }: { cat?: boolean }) {
+interface Props {
+  cat?: boolean
+  delay?: number
+}
+
+function SlideIndicator({ cat = false, delay = 0 }: Props) {
   const Indicator = cat ? CatIndicator : NormalIndicator
 
   return (
     <Container>
-      {[0, 1, 2, 3].map(index => (
-        <IndicatorWrapper index={index + 1} key={index}>
+      {[...Array(4)].map((_, index) => (
+        <IndicatorWrapper index={index + 1} key={index} delay={delay}>
           <Indicator>
-            <InnerBox index={index + 1} />
+            <InnerBox index={index + 1} delay={delay} />
           </Indicator>
         </IndicatorWrapper>
       ))}
@@ -57,20 +61,20 @@ const Container = styled.div`
   }
 `
 
-const IndicatorWrapper = styled.div<{ index: number }>`
+const IndicatorWrapper = styled.div<{ index: number; delay: number }>`
   transform: translateX(calc(48px * 4 + 4px * 3 + ${SidePadding}px + 1px));
-  animation: ${SlideIn} 0.15s ease ${props => `${startDelay + 1 + props.index * 0.15}s`} forwards,
-    ${SlideOut} 0.25s ease ${props => `${startDelay + 3.15 + props.index * 0.15}s`} forwards;
+  animation: ${SlideIn} 0.15s ease ${props => `${props.delay + 1 + props.index * 0.15}s`} forwards,
+    ${SlideOut} 0.25s ease ${props => `${props.delay + 3.15 + props.index * 0.15}s`} forwards;
 `
 
-const InnerBox = styled.div<{ index: number }>`
+const InnerBox = styled.div<{ index: number; delay: number }>`
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.16);
 
-  animation: ${InitCheckColor} 0.2s ease ${props => `${startDelay + 1.8 + props.index * 0.2}s`}
+  animation: ${InitCheckColor} 0.2s ease ${props => `${props.delay + 1.8 + props.index * 0.2}s`}
       forwards,
-    ${InitedFlash} 0.5s ease ${startDelay + 2.9}s forwards;
+    ${InitedFlash} 0.5s ease ${props => props.delay + 2.9}s forwards;
 `
 
 export default SlideIndicator
