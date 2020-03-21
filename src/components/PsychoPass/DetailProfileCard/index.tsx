@@ -6,25 +6,46 @@ import Window from 'components/PsychoPass/ProfileCard/Window'
 import Noise from 'components/PsychoPass/ProfileCard/Noise'
 import Detail from './Detail'
 
-import { fadeIn } from 'libs/keyframe'
 import { media } from 'libs/Media'
+import { useRef, useEffect } from 'hooks'
+import { animated, useSpring } from 'react-spring'
 
 interface Props {
   delay?: number
 }
 
 export default function DetailProfileCard({ delay = 0 }: Props) {
+  const [props, set] = useSpring(() => ({
+    scroll: 0
+  }))
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      set({
+        scroll: 1000,
+        from: { scroll: 0 },
+        config: { duration: 500 }
+      })
+    }, delay * 1000)
+  }, [delay, set])
+
   return (
     <Window white>
       <HeaderText>{'DETAIL-PROFILE'}</HeaderText>
       <TopLabel>
         <Noise infinite={7}>{'ALERT SETTING'}</Noise>
       </TopLabel>
-      <Content>
+      <Content ref={ref} scrollTop={props.scroll}>
         <Detail />
       </Content>
     </Window>
   )
+}
+
+declare module 'react-spring' {
+  export const animated: any
 }
 
 const HeaderText = styled.div`
@@ -50,7 +71,7 @@ const TopLabel = styled.div`
   color: ${Colors.brand};
 `
 
-const Content = styled.div`
+const Content = styled(animated.div)`
   position: absolute;
   width: 88%;
   height: 64%;

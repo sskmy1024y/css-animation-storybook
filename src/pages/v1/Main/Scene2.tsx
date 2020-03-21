@@ -10,11 +10,7 @@ interface Props {
 }
 
 export default function Scene2({ delay }: Props) {
-  return (
-    <Container delay={delay}>
-      <ProfileCard delay={delay} />
-    </Container>
-  )
+  return <Container delay={delay}></Container>
 }
 
 const Container = styled.div<{ delay: number }>`

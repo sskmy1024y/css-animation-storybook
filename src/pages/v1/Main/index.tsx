@@ -8,7 +8,6 @@ export default function Main() {
   return (
     <Container>
       <Scene1 delay={0} />
-      <Scene2 delay={4.5} />
     </Container>
   )
 }

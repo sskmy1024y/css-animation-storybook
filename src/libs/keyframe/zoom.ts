@@ -20,3 +20,14 @@ export const zoomAndFadeIn = keyframes`
     opacity: 1;
   }
 `
+
+export const zoomAndFadeOut = keyframes`
+  from { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  to { 
+    transform: scale(0);
+    opacity: 0;
+  }
+`
