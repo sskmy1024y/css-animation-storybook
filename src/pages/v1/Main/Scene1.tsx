@@ -15,7 +15,7 @@ export default function Scene1({ delay = 0 }: Props) {
     <Container delay={delay}>
       <InitialCard />
       <SecondContainer>
-        <ProfileCard delay={delay + 10} />
+        <ProfileCard delay={delay + 1000} />
       </SecondContainer>
       <ThirdContainer>
         <DetailProfileCard delay={delay + 4.7} />
@@ -37,8 +37,8 @@ const zoomAndFadeHalfOpacity = keyframes`
 
 const SecondContainer = styled.div`
   position: absolute;
-  top: 40%;
-  left: 40%;
+  top: 36%;
+  left: 36%;
   z-index: 2;
   opacity: 0;
   transform-origin: 0 0;
@@ -60,12 +60,12 @@ const Container = styled.div<{ delay: number }>`
   height: 100%;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
   > * {
     opacity: 0;
     z-index: 1;
     transform-origin: 0 0;
-    animation: ${zoomAndFadeIn} 0.2s ease ${({ delay }) => `${delay}s`} forwards;
   }
 
   ${SecondContainer},
@@ -74,6 +74,8 @@ const Container = styled.div<{ delay: number }>`
       display: flex;
       top: 0%;
       left: 0%;
+      width: 100%;
+      height: 100%;
       align-items: center;
       justify-content: center;
     }
@@ -87,5 +89,10 @@ const Container = styled.div<{ delay: number }>`
   ${ThirdContainer} {
     animation: ${zoomAndFadeIn} 0.2s ease ${({ delay }) => `${delay + 4.5}s`} forwards,
       ${zoomAndFadeOut} 0.2s ease ${({ delay }) => `${delay + 5.3}s`} forwards;
+  }
+
+  > *:first-of-type {
+    animation: ${zoomAndFadeIn} 0.2s ease ${({ delay }) => `${delay}s`} forwards,
+      ${zoomAndFadeOut} 0.2s ease ${({ delay }) => `${delay + 5.7}s`} forwards;
   }
 `

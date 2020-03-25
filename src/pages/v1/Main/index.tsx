@@ -7,7 +7,8 @@ import Scene2 from './Scene2'
 export default function Main() {
   return (
     <Container>
-      <Scene1 delay={0} />
+      {/* <Scene1 delay={0} /> */}
+      <Scene2 delay={0} />
     </Container>
   )
 }

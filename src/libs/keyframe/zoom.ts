@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components'
+import { keyframes, Keyframes } from 'styled-components'
 
 export const zoomOut = keyframes`
   from { transform: scale(1) }
@@ -31,3 +31,9 @@ export const zoomAndFadeOut = keyframes`
     opacity: 0;
   }
 `
+
+export const zoomInToAnyScale = (num: number) =>
+  keyframes`
+    from: { transform: scale(0) }
+    to: { transform: scale(${num}) }
+  `

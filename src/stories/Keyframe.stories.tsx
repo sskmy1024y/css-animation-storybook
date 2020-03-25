@@ -8,6 +8,8 @@ import styled, { Keyframes } from 'styled-components'
 import { slideTop, slideLeft, slideRight, slideBottom } from 'libs/keyframe'
 import { useState } from 'hooks'
 import { useCallback } from '@storybook/addons'
+import CatIcon from 'components/icons/Cat'
+import { zoomInToAnyScale } from 'libs/keyframe/zoom'
 
 const animateTiming = {
   linear: 'linear',
@@ -62,6 +64,28 @@ storiesAll.add('slide', () => {
   )
 })
 
+storiesAll.add('zoomIn', () => {
+  const magnification = number('magnification', 2)
+  const duration = number('duration', 2.5)
+  const timing = select('timing', animateTiming, animateTiming.linear)
+  const delay = number('delay', 0)
+
+  return (
+    <Container>
+      <TargetDiv
+        keyframe={zoomInToAnyScale(magnification)}
+        duration={duration}
+        timing={timing}
+        delay={delay}
+        play={'running'}
+        style={{ transform: 'translateY(50%)' }}
+      >
+        <CatIcon />
+      </TargetDiv>
+    </Container>
+  )
+})
+
 interface AnimateProps {
   keyframe: Keyframes
   duration: number
@@ -70,10 +94,9 @@ interface AnimateProps {
   play: 'running' | 'pause'
 }
 
-const SlideDiv = styled.div<AnimateProps>`
+const TargetDiv = styled.div<AnimateProps>`
   width: 100px;
   height: 100px;
-  background-color: green;
   margin: 0 auto;
 
   /* animation proparty
@@ -88,4 +111,8 @@ const SlideDiv = styled.div<AnimateProps>`
   */
   animation: ${props => props.keyframe} ${props => `${props.duration}s`} ${props => props.timing}
     ${props => `${props.delay}s`} forwards infinite ${props => props.play};
+`
+
+const SlideDiv = styled(TargetDiv)`
+  background-color: green;
 `
